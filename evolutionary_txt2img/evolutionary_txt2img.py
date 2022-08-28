@@ -118,4 +118,7 @@ while True:
     print(stats)
     print()
     with open(os.path.join(outdir, filename), "w", encoding="utf8") as f:
+        f.write("Human-readable prompt:")
+        f.write(txt2img_kwargs["prompt"])
+        f.write("\n\n")
         yaml.dump(mutated_spec, f)
