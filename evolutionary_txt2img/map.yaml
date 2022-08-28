@@ -1,12 +1,28 @@
 # Example configuration file for evolutionary txt2img.
 # Intended for advanced users.
+# The values listed here are the default values applied initially during randomization.
+# During optimization the values of previous samples are modified and used instead.
 
+# Output directory for samples.
+# Change or empty this directory when you start a new optimization run:
 outdir: outputs/evolutionary_txt2img
+
+# Minimal number of samples necessary for the algorithm to switch from randomization to optimization.
+# If you want to do only randomization simply set this value to an extremely high value:
 min_population_for_crossbreed: 16
+
+# Specification of how the prompt is generated.
+# Commas and spaces are automatically inserted between keywords.
 prompt:
+  # The string under "start" is always put at the beginning of the prompt.
   start: An old map of a distant, unknown Land
+  # Keywords under "always" have a 100% chance to be included in the prompt,
+  # but their position is not fixed.
   always:
     - Landkarte
+  # Keywords under "maybe" initially have a 50% chance to be included in a prompt.
+  # Their position is random.
+  # The optimization algorithm may add or remove these.
   maybe:
     - a small town
     - antique
@@ -30,7 +46,10 @@ prompt:
     - vergilbt
     - well-used and damaged
     - Weltkulturerbe
+
+# ddim_steps is varied by a factor of 0.95+-0.1 during each randomization and optimization step.
 ddim_steps: 50  # legacy name, applies to all algorithms.
+
 # Adding an int to toggles enables the corresponding feature.
 # 0: Create prompt matrix (separate multiple prompts using |, and get all combinations of them)
 # 1: Normalize Prompt Weights (ensure sum of weights add up to 1.0)
@@ -41,14 +60,30 @@ ddim_steps: 50  # legacy name, applies to all algorithms.
 # 6: Fix faces using GFPGAN
 # 7: Upscale images using Real-ESRGAN (NOT TESTED)
 toggles: [1, 2, 3, 4, 5]
+
+# Randomization of sampling algorithm is not implemented.
 sampler_name: k_lms  # Valid: DDIM, k_dpm_2_a, k_dpm_2, k_euler_a, k_euler, k_heun, k_lms
+
+# ddim_eta is varied by +-10% during each randomization and optimization step but the value
+# is only relevant for DDIM sampling.
 ddim_eta: 0.0
+
+# n_iter and batch_size are not randomized.
 n_iter: 9
 batch_size: 1
+
+# cfg_scale is varied by +-10% during each randomization and optimization step but the value
 cfg_scale: 10.0
+
+# The seed used for sample generation.
+# When left blank a random seed is used for each sample.
+# When fixed
 seed:
+
+# height and width are not randomized.
 height: 512
 width: 512
+
 # The options below this line have not been tested. Use at your own discretion.
 # Textual inversion embeddings file path:
 fp:
