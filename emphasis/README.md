@@ -36,7 +36,7 @@ The seeds 0-59 were used to generate a total of 60 images per data point.
 
 The result of a qauntitative analysis is that square brackets seem to have a small but statistically significant positive effect.
 No effect or a negative effect can be excluded with 99.98% confidence.
-The usage of four pairs of square brackets increases the average red pixel value of an image by ~1 -
-while statistically significant this effect is not perceptible to humans.
+The usage of four pairs of square brackets increases the average red pixel value of an image by ~1.
+While statistically significant this effect is not perceptible to humans.
 
 The value of chi2/NDF is close to 1 which indicates that the assumptions that went into the analysis are valid.

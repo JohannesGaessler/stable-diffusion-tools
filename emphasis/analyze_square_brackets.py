@@ -51,7 +51,7 @@ fit.add_matrix_error("y", y_cov_mat, "cov")
 fit.do_fit()
 
 plot = Plot(fit)
-plot.x_label = "Number of square  brackets"
+plot.x_label = "Number of square brackets"
 plot.y_label = "Mean red pixel value diff"
 plot.plot()
 plot.save("square_brackets.png", dpi=240)
