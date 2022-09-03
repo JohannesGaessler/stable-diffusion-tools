@@ -13,17 +13,18 @@ PROMPTS = [
     "Flowers, [[[red]]], blue",
     "Flowers, [[[[red]]]], blue",
     "Flowers, [[[[[red]]]]], blue",
+    "Flowers, [[[[[[red]]]]]], blue",
+    "Flowers, [[[[[[[red]]]]]]], blue",
+    "Flowers, [[[[[[[[red]]]]]]]], blue",
 ]
 
 x_data = np.arange(1, len(PROMPTS))
-y_data = []
-y_error = []
+diffs = []
 
 for i, prompt in enumerate(PROMPTS):
     prompt_dir = os.path.join(SAMPLE_DIR, prompt)
     means_i = []
     file_list = os.listdir(prompt_dir)
-    num_samples = len(file_list)
 
     for filename in file_list:
         if not filename.endswith(".png"):
@@ -36,18 +37,22 @@ for i, prompt in enumerate(PROMPTS):
     if i == 0:
         means_0 = means_i
     else:
-        diffs = means_i - means_0
-        y_data.append(np.mean(diffs))
-        y_error.append(np.std(diffs) / np.sqrt(num_samples))
+        diffs_i = means_i - means_0
+        diffs.append(diffs_i)
 
+diffs = np.array(diffs)
+y_data = np.mean(diffs, axis=1)
+y_cov_mat = np.cov(diffs) / diffs.shape[1]
 
 fit = XYFit([x_data, y_data])
-fit.add_error("y", y_error)
+fit.add_matrix_error("y", y_cov_mat, "cov")
+#fit.fix_parameter("a", 0)
+#fit.fix_parameter("b", 0)
 fit.do_fit()
 
 plot = Plot(fit)
-plot.x_label = "Number of square  brackets PRELIMINARY RESULT"
-plot.y_label = "Mean red pixel value diff PRELIMINARY RESULT"
+plot.x_label = "Number of square  brackets"
+plot.y_label = "Mean red pixel value diff"
 plot.plot()
-plot.save("square_brackets.png", dpi=320)
+plot.save("square_brackets.png", dpi=240)
 plot.show()
