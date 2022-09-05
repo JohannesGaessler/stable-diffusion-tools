@@ -40,3 +40,15 @@ The usage of four pairs of square brackets increases the average red pixel value
 While statistically significant this effect is not perceptible to humans.
 
 The value of chi2/NDF is close to 1 which indicates that the assumptions that went into the analysis are valid.
+
+### Exclamation Marks
+This test uses the same methodology as the one for square brackets except that exclamation marks are appended instead: "Flowers, red, blue", "Flowers, red!, blue", "Flowers, red!!, blue", and so on.
+
+![Exclamation marks](./exclamation_marks.png)
+
+The value for chi2/NDF is very high.
+While this can have multiple reasons the most straightforward interpretation is that adding exclamation marks simply has no coherent effect on the generated images.
+And because then the addition of exclamation marks essentially just has an undefined, random effect on the image a first-degree polynomial cannot accurately model this effect, thus resulting in a high value for chi2/NDF.
+This interpretation is supported by the implausible fit results:
+because the y data is computed as the difference relative to the images that were generated when using no exclamation marks
+at all the value for b is expected to be compatible with 0 in the case of a coherent effect (it is not in this case).

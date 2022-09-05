@@ -8,14 +8,14 @@ from kafe2 import XYFit, Plot
 SAMPLE_DIR = "data"
 PROMPTS = [
     "Flowers, red, blue",
-    "Flowers, [red], blue",
-    "Flowers, [[red]], blue",
-    "Flowers, [[[red]]], blue",
-    "Flowers, [[[[red]]]], blue",
-    "Flowers, [[[[[red]]]]], blue",
-    "Flowers, [[[[[[red]]]]]], blue",
-    "Flowers, [[[[[[[red]]]]]]], blue",
-    "Flowers, [[[[[[[[red]]]]]]]], blue",
+    "Flowers, red!, blue",
+    "Flowers, red!!, blue",
+    "Flowers, red!!!, blue",
+    "Flowers, red!!!!, blue",
+    "Flowers, red!!!!!, blue",
+    "Flowers, red!!!!!!, blue",
+    "Flowers, red!!!!!!!, blue",
+    "Flowers, red!!!!!!!!, blue",
 ]
 
 x_data = np.arange(1, len(PROMPTS))
@@ -52,8 +52,8 @@ fit.do_fit()
 fit.report()
 
 plot = Plot(fit)
-plot.x_label = "Number of square brackets"
+plot.x_label = "Number of exclamation marks"
 plot.y_label = "Mean red pixel value diff"
 plot.plot()
-plot.save("square_brackets.png", dpi=240)
+plot.save("exclamation_marks.png", dpi=240)
 plot.show()
