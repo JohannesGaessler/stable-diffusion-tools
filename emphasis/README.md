@@ -65,3 +65,19 @@ Data with the seeds 0-120 is generated for both negative prompt variants and the
 A scatter plot of the red pixel value without a negative prompt on the x axis and the difference resulting from a negative prompt is shown below:
 
 ![NP scatter plot](negative_prompt_scatter_plot.png)
+
+Even without performing a statistical analysis the effect of the negative prompt is clearly visible:
+mean red pixel values are reduced and the reduction is larger if the initial red pixel is higher.
+For a quantitative analysis the data in the x interval [80, 160) is binned with a bin size of 10.
+To account for the change in x values an uncertainty in x direction equal to a quarter of the bin size is added to each bin.
+The fit results are shown below:
+
+![NP fit](negative_prompt_fit.png)
+
+The fit results suggest a highly significant effect.
+The decrease in red pixel value on average increases by 1 for every 6 red pixel value in the original image.
+Note that this likely underestimates the strength of the effect: the human concept of "red" excludes colors such as yellow or purple that might still have high red pixel values.
+The subjective change in the generated images is very apparent.
+
+The nonlinearity introduced by the uncertainties in x direction are negligible.
+The value of chi2/NDF is close to 1 which indicates that the chosen model and uncertainties are valid.
