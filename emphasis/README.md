@@ -24,8 +24,6 @@ Based on the aforementioned means and their covariances a linear regression usin
 Assuming that the model function accurately describes the data this guarantees that the uncertainties on the model parameters are normally distributed.
 The value of `chi2/NDF` is considered to evaluate whether the model function significantly deviates from the data.
 
-The CLI functionality of [hlky's webui script](https://github.com/hlky/stable-diffusion-webui) is used for generating the data.
-
 ### Square brackets
 This test is concerned with the effect of square brackets on keywords if they are not explicitly processed to have a specific effect.
 A common assertion is that Stable Diffusion has learned to associate square brackets with emphasizing a keyword.
@@ -41,6 +39,8 @@ While statistically significant this effect is not perceptible to humans.
 
 The value of chi2/NDF is close to 1 which indicates that the assumptions that went into the analysis are valid.
 
+The CLI functionality of [hlky's webui script](https://github.com/hlky/stable-diffusion-webui) was used for generating the data.
+
 ### Exclamation Marks
 This test uses the same methodology as the one for square brackets except that exclamation marks are appended instead: "Flowers, red, blue", "Flowers, red!, blue", "Flowers, red!!, blue", and so on.
 
@@ -52,3 +52,16 @@ And because then the addition of exclamation marks essentially just has an undef
 This interpretation is supported by the implausible fit results:
 because the y data is computed as the difference relative to the images that were generated when using no exclamation marks
 at all the value for b is expected to be compatible with 0 in the case of a coherent effect (it is not in this case).
+
+The CLI functionality of [hlky's webui script](https://github.com/hlky/stable-diffusion-webui) was used for generating the data.
+
+### Negative Prompts
+The [Automatic1111 webui script](https://github.com/AUTOMATIC1111/stable-diffusion-webui) has implemented a "negative prompt".
+The intended effect is that the image should not resemble the specified negative prompt.
+This test is concerned with quantifying the effect of a simple negative prompt.
+For the regular prompt "Flowers" is chosen.
+The negative prompt is either empty or "red".
+Data with the seeds 0-120 is generated for both negative prompt variants and their differences in mean red pixel values is calculated.
+A scatter plot of the red pixel value without a negative prompt on the x axis and the difference resulting from a negative prompt is shown below:
+
+![NP scatter plot](negative_prompt_scatter_plot.png)
