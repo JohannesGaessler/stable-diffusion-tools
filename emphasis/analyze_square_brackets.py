@@ -7,15 +7,30 @@ from kafe2 import XYFit, Plot
 
 SAMPLE_DIR = "data"
 PROMPTS = [
-    "Flowers, red, blue",
-    "Flowers, [red], blue",
-    "Flowers, [[red]], blue",
-    "Flowers, [[[red]]], blue",
-    "Flowers, [[[[red]]]], blue",
-    "Flowers, [[[[[red]]]]], blue",
-    "Flowers, [[[[[[red]]]]]], blue",
-    "Flowers, [[[[[[[red]]]]]]], blue",
-    "Flowers, [[[[[[[[red]]]]]]]], blue",
+#    "Flowers, red, blue",
+#    "Flowers, (red), blue",
+#    "Flowers, ((red)), blue",
+#    "Flowers, (((red))), blue",
+#    "Flowers, ((((red)))), blue",
+#    "Flowers, (((((red))))), blue",
+#    "Flowers, ((((((red)))))), blue",
+#    "Flowers, [red], blue",
+#    "Flowers, [[red]], blue",
+#    "Flowers, [[[red]]], blue",
+#    "Flowers, [[[[red]]]], blue",
+#    "Flowers, [[[[[red]]]]], blue",
+#    "Flowers, [[[[[[red]]]]]], blue",
+#    "Flowers, [[[[[[[red]]]]]]], blue",
+#    "Flowers, [[[[[[[[red]]]]]]]], blue",
+    "Flowers, blue, red",
+    "Flowers, blue, [red]",
+    "Flowers, blue, [[red]]",
+    "Flowers, blue, [[[red]]]",
+    "Flowers, blue, [[[[red]]]]",
+    "Flowers, blue, [[[[[red]]]]]",
+    "Flowers, blue, [[[[[[red]]]]]]",
+    "Flowers, blue, [[[[[[[red]]]]]]]",
+    "Flowers, blue, [[[[[[[[red]]]]]]]]",
 ]
 
 x_data = np.arange(1, len(PROMPTS))
@@ -24,7 +39,7 @@ diffs = []
 for i, prompt in enumerate(PROMPTS):
     prompt_dir = os.path.join(SAMPLE_DIR, prompt)
     means_i = []
-    file_list = os.listdir(prompt_dir)
+    file_list = sorted(os.listdir(prompt_dir))
 
     for filename in file_list:
         if not filename.endswith(".png"):
