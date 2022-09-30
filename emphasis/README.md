@@ -45,6 +45,16 @@ The seeds 0-59 were used to generate a total of 60 images per data point.
 
 ![Square brackets 2](./square_brackets_2.png)
 
+With "red" rearranged to the back of the prompt there is no consistent effect.
+With just one pair of square brackets the mean red pixel value seems to increase slightly.
+The addition of more brackets however seems to lower the mean red pixel value.
+The effect is nonlinear and as such a first-degree polynomial cannot describe the effect (chi2/NDF >> 1).
+
+The interpretation of this result is unclear.
+It definitely proves that square brackets do not consistently strengthen keywords.
+The alternative hypothesis regarding an increased distance (in terms of tokens) due to the squared brackets also does not seem compatible
+since the expectation would be that the mean red pixel value continuously decreases with each pair of square brackets.
+
 The CLI functionality of [hlky's webui script](https://github.com/hlky/stable-diffusion-webui) was used for generating the data.
 
 ### Exclamation Marks
